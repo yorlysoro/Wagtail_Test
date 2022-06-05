@@ -1,0 +1,45 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{% block header %}
+    <nav>
+        <ul>
+            <li>
+                <a href="/">
+                    {% image self.page_logo fill-320x96 as logo %}
+                    <img src="{{ logo.url }}" alt="{{ logo.alt }}">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <!--Search bar-->
+                    <form class="form-inline my-2 my-lg-0"> 
+                        <div class="main-input-container">
+                            <span class="space">
+                            </span>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="search-icon"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li>
+                <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Iniciar Session</a></li>
+                            
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <nav>
+        <ul>
+            <li>Snippets</li>
+        </ul>
+    </nav>
+{% endblock %}
