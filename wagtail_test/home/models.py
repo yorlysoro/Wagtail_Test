@@ -41,7 +41,7 @@ class HomePage(Page):
 
 class BlogDetailPage(Page):
 
-    blog_title = models.CharField(
+    blog_resume = models.CharField(
         max_length=100,
         blank=False,
         null=False,
@@ -64,7 +64,7 @@ class BlogDetailPage(Page):
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel("blog_title"),
+        FieldPanel("blog_resume"),
         ImageChooserPanel("blog_image"),
         StreamFieldPanel("content"),
     ]

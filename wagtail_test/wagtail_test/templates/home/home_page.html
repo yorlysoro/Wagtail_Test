@@ -3,21 +3,26 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
 {% block content %}
-<section class="container">
+<section class="container p-6">
     {% for post in posts %}
-        <article class="row mt-5 mb-5">
-            <div class="col-sm-3">
-                {% image post.blog_image fill-250x250 as blog_img %}
-                <a href="{{ post.url }}">
-                    <img src="{{ blog_img.url }}" alt="{{ blog_img.alt }}">
-                </a>
-            </div>
-            <div class="col-sm-9">
-                <a href="{{ post.url }}">
-                    <h2>{{ post.blog_title }}</h2>
-                    {# @todo add a summary field to BlogDetailPage; make it a RichTextField with only Bold and Italic enabled. #}
-                    <a href="{{ post.url }}" class="btn btn-primary mt-4">Read More</a>
-                </a>
+        <article class="flex items-center shadow-lg p-4 sm:p-0">
+            <div class="w-full self-auto">
+                <div class="rounded-md w-auto h-full self-center sm:float-left sm:pl-2 sm:pr-2 md:pr-4">
+                    {% image post.blog_image fill-250x250 as blog_img %}
+                    <img class="rounded-md" src="{{ blog_img.url }}" alt="{{ blog_img.alt }}">
+                </div>
+                <div class="self-center sm:pr-2 sm:pl-2 ">
+                    <h2 class="font-serif mt-2 font-semibold text-center sm:text-left">{{ post.title }}</h2>
+                    <div class="mt-1 mb-1 text-right text-slate-600 md:text-left">
+                        <span class="hidden sm:inline sm:text-left"><i class="fa-duotone fa-clock"></i> Hace 5 horas</span>
+                        <span class="inline"><i class="fa-duotone fa-tag"></i> Economia</span>
+                        <span class="inline"><i class="fa-duotone fa-comment"></i> 0</span>
+                    </div>
+                    <p class="font-serif mt-2 mb-4 font-thin text-slate-400 text-justify">{{ post.blog_resume }}</p>
+                    <a class="border-2 p-2 bg-orange-500 font-serif font-semibold text-white rounded-md sm:fixed sm:text-bottom" href="{{ post.url }}">
+                       Leer más  >>
+                    </a>
+                </div>
             </div>
         </article>
     {% endfor %}
