@@ -15,11 +15,15 @@
                     <h2 class="font-serif mt-2 font-semibold text-center sm:text-left">{{ post.title }}</h2>
                     <div class="mt-1 mb-1 text-right text-slate-600 md:text-left">
                         <span class="hidden sm:inline sm:text-left"><i class="fa-duotone fa-clock"></i> Hace 5 horas</span>
-                        <span class="inline"><i class="fa-duotone fa-tag"></i> Economia</span>
+                        {% if post.categories_post %}
+                            {% for category in post.categories_post %}
+                                <span class="hidden sm:inline sm:text-left"><i class="fa-duotone fa-tag"></i> {{ category.name }}</span>
+                            {% endfor %}
+                        {% endif %}
                         <span class="inline"><i class="fa-duotone fa-comment"></i> 0</span>
                     </div>
                     <p class="font-serif mt-2 mb-4 font-thin text-slate-400 text-justify">{{ post.blog_resume }}</p>
-                    <a class="border-2 p-2 bg-orange-500 font-serif font-semibold text-white rounded-md sm:fixed sm:text-bottom" href="{{ post.url }}">
+                    <a class="border-2 p-2 bg-orange-500 font-serif font-semibold text-white rounded-md sm:text-bottom" href="{{ post.url }}">
                        Leer más  >>
                     </a>
                 </div>
