@@ -3,9 +3,9 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 
 {% block content %}
-<section class="container p-6">
+<section class="container">
     {% for post in posts %}
-        <article class="flex items-center shadow-lg p-4 sm:p-0">
+        <article class="flex items-center shadow-lg p-4 sm:p-0 xl:p-6 xl:m-6">
             <div class="w-full self-auto">
                 <div class="rounded-md w-auto h-full self-center sm:float-left sm:pl-2 sm:pr-2 md:pr-4">
                     {% image post.blog_image fill-250x250 as blog_img %}
@@ -31,4 +31,21 @@
         </article>
     {% endfor %}
 </section>
+{% if posts.paginator.num_pages > 1 %}
+    <section class="container">
+        <div class="">
+            {% if posts.has_previous %}
+                <span class="rounded-full "><a href="/?page={{ posts.previous_page_number }}"><i class="fa-duotone fa-chevron-left"></i></a></span>
+            {% endif %}
+
+            {% for num_page in posts.paginator.page_range %}
+                <span class="text-stone-400 {% if page_num == posts.number %} active {% endif %} active:bg-stone-700 active:text-white active:rounded-full pl-1 pr-1 "><a href="/?page={{ num_page }}">{{ num_page }}</a></span>
+            {% endfor %}
+
+            {% if posts.has_next %}
+                <span class="rounded-full "><a href="/?page={{ posts.next_page_number }}"><i class="fa-duotone fa-chevron-right"></i></a></span>
+            {% endif %}
+        </div> 
+    </section>
+{% endif %}
 {% endblock %}

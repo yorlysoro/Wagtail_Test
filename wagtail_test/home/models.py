@@ -15,6 +15,7 @@ from wagtail.admin.edit_handlers import (
     StreamFieldPanel,
     MultiFieldPanel,
 )
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
 
 from home import blocks
@@ -78,10 +79,14 @@ class HomePage(RoutablePageMixin, Page):
         if request.GET.get('category', None):
             category = request.GET.get('category')
             all_posts = all_posts.filter(categories_post__slug__in=[category])
+        elif request.GET.get('search', None):
+            search = request.GET.get('search', None)
+            all_posts = all_posts.filter(title__icontains=search)
         else:
             all_posts = context["posts"]
         # Paginate all posts by 2 per page
-        paginator = Paginator(all_posts, 10)
+        
+        paginator = Paginator(all_posts, 2)
         # Try to get the ?page=x value
         page = request.GET.get("page")
         try:
@@ -168,3 +173,35 @@ class BlogDetailPage(Page):
         context["categories"] = BlogCategory.objects.all()
         return context
     
+    def prev_portrait(self):
+        if self.get_prev_sibling():
+            return self.get_prev_sibling().url
+        else:
+            return self.get_siblings().last().url
+
+    def next_portrait(self):
+        if self.get_next_sibling():
+            return self.get_next_sibling().url
+        else:
+            return self.get_siblings().first().url
+    
+@register_setting
+class BusinessSettings(BaseSetting):
+    """Configuraciones de la empresa"""
+
+    page_logo =  models.ForeignKey(
+        "wagtailimages.Image",
+        blank=False,
+        null=True,
+        related_name="+",
+        on_delete=models.SET_NULL,
+    )
+
+    panels = [
+        MultiFieldPanel([
+            ImageChooserPanel("page_logo"),
+        ], heading="Configuracion de la Empresa")
+    ]
+    
+    def __str__(self) -> str:
+        return "Configuraciones de la Empresa"

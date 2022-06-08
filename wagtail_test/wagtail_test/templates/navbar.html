@@ -3,14 +3,14 @@
         <ul class="flex">
             <li class="hidden sm:flex sm:flex-col sm:basis-1/3 sm:w-px sm:h-px sm:p-3 sm:m-0 ">
                 <a href="/">
-                    {% image self.page_logo fill-320x96 as logo %}
-                    <img src="{{ logo.url }}" alt="{{ logo.alt }}">
+                        {% image settings.home.BusinessSettings.page_logo fill-320x96 as logo %}
+                        <img src="{{ logo.url }}" alt="{{ logo.alt }}">
                 </a>
             </li>
             <li class="flex-col basis-2/3 sm:pt-4 lg:pt-6 lg:-pl-6 w-full pt-6 pl-6">
                 <div class="">
                     <!--Search bar-->
-                    <form class="form-inline sm:pt-2 md:w-full lg:pr-4 "> 
+                    <form action="/?search=" class="form-inline sm:pt-2 md:w-full lg:pr-4 "  method="get"> 
                         <div class="main-input-container">
                             <span class="p-1">
                             </span>

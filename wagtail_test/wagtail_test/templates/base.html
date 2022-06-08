@@ -15,11 +15,11 @@
         </title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="https://kit.fontawesome.com/1d71f92e0a.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
+        
 
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/wagtail_test.css' %}">
+        
 
 
         {% block extra_css %}
@@ -38,11 +38,13 @@
        
         {% block content %}{% endblock %}
 
-        <footer class="fixed bottom-0 w-full">
+        <footer class="bottom-0 w-full">
             {% include "footer.html" %}
         </footer>
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/wagtail_test.js' %}"></script>
+        <script src="https://kit.fontawesome.com/1d71f92e0a.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
