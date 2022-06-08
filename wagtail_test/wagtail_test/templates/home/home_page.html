@@ -16,8 +16,8 @@
                     <div class="mt-1 mb-1 text-right text-slate-600 md:text-left">
                         <span class="hidden sm:inline sm:text-left"><i class="fa-duotone fa-clock"></i> Hace 5 horas</span>
                         {% if post.categories_post %}
-                            {% for category in post.categories_post %}
-                                <span class="hidden sm:inline sm:text-left"><i class="fa-duotone fa-tag"></i> {{ category.name }}</span>
+                            {% for category in post.categories_post.all %}
+                                <span class="hidden sm:inline sm:text-left"><a href="/?category={{ category.slug }}"><i class="fa-duotone fa-tag"></i> {{ category.name }}</a></span>
                             {% endfor %}
                         {% endif %}
                         <span class="inline"><i class="fa-duotone fa-comment"></i> 0</span>
